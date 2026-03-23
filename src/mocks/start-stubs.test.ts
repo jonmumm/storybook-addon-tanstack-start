@@ -5,8 +5,10 @@ import {
   Outlet,
   HeadContent,
   Scripts,
+  clearCookieStore,
   createFileRoute,
   createRootRoute,
+  createRootRouteWithContext,
   createRouter,
   createServerFn,
   createStart,
@@ -14,9 +16,17 @@ import {
   getCookie,
   getRouter,
   notFound,
+  redirect,
   routeTree,
   setCookie,
+  useLoaderData,
+  useLocation,
+  useMatch,
+  useMatches,
   useNavigate,
+  useParams,
+  useRouteContext,
+  useRouter,
   useSearch,
 } from "./start-stubs.js";
 
@@ -157,5 +167,75 @@ describe("getRouter", () => {
     const router = getRouter();
     expect(router).toHaveProperty("navigate");
     expect(router).toHaveProperty("routeTree");
+  });
+});
+
+describe("createServerFn chaining", () => {
+  it("supports middleware()", () => {
+    const builder = createServerFn();
+    const chained = (builder as { middleware: () => typeof builder }).middleware();
+    expect(chained).toBe(builder);
+  });
+
+  it("supports method()", () => {
+    const builder = createServerFn();
+    const chained = (builder as { method: () => typeof builder }).method();
+    expect(chained).toBe(builder);
+  });
+});
+
+describe("clearCookieStore", () => {
+  it("clears all cookies to prevent cross-story contamination", () => {
+    setCookie("a", "1");
+    setCookie("b", "2");
+    clearCookieStore();
+    expect(getCookie("a")).toBeUndefined();
+    expect(getCookie("b")).toBeUndefined();
+  });
+});
+
+describe("additional router hook stubs", () => {
+  it("useLoaderData returns empty object", () => {
+    expect(useLoaderData()).toEqual({});
+  });
+
+  it("useParams returns empty object", () => {
+    expect(useParams()).toEqual({});
+  });
+
+  it("useRouteContext returns empty object", () => {
+    expect(useRouteContext()).toEqual({});
+  });
+
+  it("useMatch returns empty object", () => {
+    expect(useMatch()).toEqual({});
+  });
+
+  it("useMatches returns empty array", () => {
+    expect(useMatches()).toEqual([]);
+  });
+
+  it("useRouter returns a router", () => {
+    const router = useRouter();
+    expect(router).toHaveProperty("navigate");
+  });
+
+  it("useLocation returns default location", () => {
+    expect(useLocation()).toEqual({ pathname: "/", search: "", hash: "" });
+  });
+});
+
+describe("createRootRouteWithContext", () => {
+  it("returns a factory that creates a root route", () => {
+    const factory = createRootRouteWithContext();
+    const route = factory({ component: () => null });
+    expect(route.id).toBe("__root__");
+    expect(route.path).toBe("/");
+  });
+});
+
+describe("redirect", () => {
+  it("throws an error when called", () => {
+    expect(() => redirect({ to: "/login" })).toThrow("redirect()");
   });
 });

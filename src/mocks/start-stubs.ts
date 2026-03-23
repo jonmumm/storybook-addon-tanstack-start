@@ -1,10 +1,12 @@
 import React from "react";
 
-// Server function builder (chainable)
+// Server function builder (chainable — all methods return the builder)
 export const createServerFn = () => {
   const builder: Record<string, unknown> = {
     validator: () => builder,
     inputValidator: () => builder,
+    middleware: () => builder,
+    method: () => builder,
     handler: () => async () => {
       throw new Error("createServerFn not available in Storybook");
     },
@@ -26,6 +28,11 @@ export const getCookie = (name: string) => cookieStore.get(name);
 
 export const deleteCookie = (name: string) => {
   cookieStore.delete(name);
+};
+
+/** Clear all cookies — call between stories to prevent cross-story contamination */
+export const clearCookieStore = () => {
+  cookieStore.clear();
 };
 
 // Route tree stub
@@ -64,6 +71,25 @@ export const useNavigate = () => (options: Record<string, unknown>) =>
   console.log("[Storybook] Navigate:", options);
 
 export const useSearch = () => ({});
+export const useLoaderData = () => ({});
+export const useParams = () => ({});
+export const useRouteContext = () => ({});
+export const useMatch = () => ({});
+export const useMatches = () => [];
+export const useRouter = () => getRouter();
+export const useLocation = () => ({ pathname: "/", search: "", hash: "" });
+
+// createRootRouteWithContext returns a function that creates a root route
+export const createRootRouteWithContext =
+  () =>
+  (config: Record<string, unknown> = {}) =>
+    createRootRoute(config);
+
+// redirect throws to trigger navigation — in Storybook, just log it
+export const redirect = (opts: Record<string, unknown>) => {
+  console.log("[Storybook] redirect:", opts);
+  throw new Error("redirect() called in Storybook");
+};
 
 export const Link = ({
   to,

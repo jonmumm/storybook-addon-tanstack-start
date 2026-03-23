@@ -7,6 +7,7 @@ export default defineConfig({
     include: ["src/**/*.test.ts", "src/**/*.test.tsx"],
   },
   lint: {
+    ignorePatterns: ["test-app/**"],
     options: {
       typeAware: true,
       typeCheck: true,
