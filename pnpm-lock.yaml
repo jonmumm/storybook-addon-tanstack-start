@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      storybook-addon-tanstack-router:
+        specifier: ^0.1.0
+        version: 0.1.0(@storybook/react@10.3.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(storybook@10.3.1(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(typescript@5.9.3))(@tanstack/react-router@1.168.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
     devDependencies:
       '@storybook/react':
         specifier: ^10.3.1
@@ -1879,6 +1883,14 @@ packages:
   std-env@4.0.0:
     resolution: {integrity: sha512-zUMPtQ/HBY3/50VbpkupYHbRroTRZJPRLvreamgErJVys0ceuzMkD44J/QjqhHjOzK42GQ3QZIeFG1OYfOtKqQ==}
 
+  storybook-addon-tanstack-router@0.1.0:
+    resolution: {integrity: sha512-CSOyacE8WYSEyv1riss7+qLViRGNf/ka9oHp6pmgCsa4LulFlST3JjfOFoxBVC8vymagKqR6YMyFyTPDYdoKdw==}
+    peerDependencies:
+      '@storybook/react': '>=8.0.0'
+      '@tanstack/react-router': '>=1.0.0'
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+
   storybook@10.3.1:
     resolution: {integrity: sha512-i/CA1dUyVcF6cNL3tgPTQ/G6Evh6r3QdATuiiKObrA3QkEKmt3jrY+WeuQA7FCcmHk/vKabeliNrblaff8aY6Q==}
     hasBin: true
@@ -3661,6 +3673,13 @@ snapshots:
   stackback@0.0.2: {}
 
   std-env@4.0.0: {}
+
+  storybook-addon-tanstack-router@0.1.0(@storybook/react@10.3.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(storybook@10.3.1(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(typescript@5.9.3))(@tanstack/react-router@1.168.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+    dependencies:
+      '@storybook/react': 10.3.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(storybook@10.3.1(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(typescript@5.9.3)
+      '@tanstack/react-router': 1.168.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
 
   storybook@10.3.1(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
     dependencies:

@@ -1,6 +1,6 @@
 {
   "name": "storybook-addon-tanstack-start",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Storybook addon for TanStack Start — Vite plugin that stubs server-side imports (createServerFn, server entries, cookies) so stories render without a server",
   "keywords": [
     "storybook",
@@ -55,6 +55,9 @@
     "knip": "knip",
     "verify": "pnpm check && pnpm knip && pnpm test"
   },
+  "dependencies": {
+    "storybook-addon-tanstack-router": "^0.1.0"
+  },
   "devDependencies": {
     "@storybook/react": "^10.3.1",
     "@tanstack/react-router": "^1.168.2",
@@ -78,7 +81,6 @@
     "@tanstack/react-router": ">=1.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
-    "storybook-addon-tanstack-router": ">=0.1.0",
     "vite": ">=5.0.0"
   },
   "peerDependenciesMeta": {

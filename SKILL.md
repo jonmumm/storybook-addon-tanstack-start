@@ -36,43 +36,43 @@ npx skills add jonmumm/storybook-addon-tanstack-start
 ### 1. Add the Vite plugin to `.storybook/main.ts`
 
 ```typescript
-import { tanstackStartPlugin } from 'storybook-addon-tanstack-start/plugin'
-import { mergeConfig } from 'vite'
+import { tanstackStartPlugin } from "storybook-addon-tanstack-start/plugin";
+import { mergeConfig } from "vite";
 
 const config = {
   // ... your storybook config
   async viteFinal(config) {
     return mergeConfig(config, {
       plugins: [tanstackStartPlugin()],
-    })
+    });
   },
-}
+};
 ```
 
 ### 2. Add the router decorator to `.storybook/preview.ts`
 
 ```typescript
-import { withTanStackRouter } from 'storybook-addon-tanstack-router'
-export const decorators = [withTanStackRouter]
+import { withTanStackRouter } from "storybook-addon-tanstack-router";
+export const decorators = [withTanStackRouter];
 ```
 
 ### 3. Configure route params and loader data per story
 
 ```typescript
-import { tanstackRouterParameters } from 'storybook-addon-tanstack-router'
+import { tanstackRouterParameters } from "storybook-addon-tanstack-router";
 
 export const MyStory: Story = {
   parameters: {
     tanstackRouter: tanstackRouterParameters({
       location: {
-        path: '/users/$userId',
-        params: { userId: '42' },
-        search: { tab: 'settings' },
+        path: "/users/$userId",
+        params: { userId: "42" },
+        search: { tab: "settings" },
       },
-      loader: { data: { user: { name: 'Alice' } } },
+      loader: { data: { user: { name: "Alice" } } },
     }),
   },
-}
+};
 ```
 
 ## What the Plugin Does
@@ -93,11 +93,11 @@ export const MyStory: Story = {
 ```typescript
 tanstackStartPlugin({
   // Stub additional server modules (e.g. your auth/billing server code)
-  additionalServerModules: ['~/lib/auth/server', '~/lib/billing/server'],
+  additionalServerModules: ["~/lib/auth/server", "~/lib/billing/server"],
 
   // Keep TanStack Vite plugins in the pipeline (default: true strips them)
   stripTanStackPlugins: false,
-})
+});
 ```
 
 ## Double RouterProvider Warning
@@ -116,9 +116,9 @@ then create your own mock files:
 ```typescript
 // .storybook/mocks/auth-server.ts
 export async function loginWithPassword({ data }) {
-  if (data.email === 'test@example.com' && data.password === 'password123')
-    return { ok: true, role: 'parent' }
-  return { ok: false, error: 'Invalid credentials' }
+  if (data.email === "test@example.com" && data.password === "password123")
+    return { ok: true, role: "parent" };
+  return { ok: false, error: "Invalid credentials" };
 }
 ```
 
