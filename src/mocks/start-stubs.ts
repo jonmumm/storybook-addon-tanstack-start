@@ -5,6 +5,8 @@ export const createServerFn = () => {
   const builder: Record<string, unknown> = {
     validator: () => builder,
     inputValidator: () => builder,
+    middleware: () => builder,
+    method: () => builder,
     handler: () => async () => {
       throw new Error("createServerFn not available in Storybook");
     },
@@ -26,6 +28,10 @@ export const getCookie = (name: string) => cookieStore.get(name);
 
 export const deleteCookie = (name: string) => {
   cookieStore.delete(name);
+};
+
+export const clearCookieStore = () => {
+  cookieStore.clear();
 };
 
 // Route tree stub
@@ -64,6 +70,23 @@ export const useNavigate = () => (options: Record<string, unknown>) =>
   console.log("[Storybook] Navigate:", options);
 
 export const useSearch = () => ({});
+export const useLoaderData = () => ({});
+export const useParams = () => ({});
+export const useRouteContext = () => ({});
+export const useMatch = () => ({});
+export const useMatches = () => [] as unknown[];
+export const useRouter = () => getRouter();
+export const useLocation = () => ({ pathname: "/", search: "", hash: "" });
+
+export const createRootRouteWithContext =
+  () =>
+  (config: Record<string, unknown> = {}) =>
+    createRootRoute(config);
+
+export const redirect = (opts: Record<string, unknown>) => {
+  console.log("[Storybook] redirect:", opts);
+  throw new Error("redirect() called in Storybook");
+};
 
 export const Link = ({
   to,

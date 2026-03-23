@@ -2,24 +2,43 @@
 export { tanstackStartPlugin } from "./plugin.js";
 export type { TanStackStartPluginOptions } from "./plugin.js";
 
+// Re-export everything from storybook-addon-tanstack-router
+// so users only need one package
+export { withTanStackRouter, tanstackRouterParameters } from "storybook-addon-tanstack-router";
+export type {
+  TanStackRouterParameters,
+  LocationConfig,
+  LoaderConfig,
+} from "storybook-addon-tanstack-router";
+
 // Re-export stubs for direct use
 export {
+  clearCookieStore,
+  createFileRoute,
+  createRootRoute,
+  createRootRouteWithContext,
+  createRouter,
   createServerFn,
   createStart,
-  setCookie,
-  getCookie,
   deleteCookie,
-  routeTree,
-  createRouter,
-  createRootRoute,
-  createFileRoute,
-  useNavigate,
-  useSearch,
-  Link,
-  Outlet,
+  getCookie,
+  getRouter,
   HeadContent,
-  Scripts,
+  Link,
   Navigate,
   notFound,
-  getRouter,
+  Outlet,
+  redirect,
+  routeTree,
+  Scripts,
+  setCookie,
+  useLoaderData,
+  useLocation,
+  useMatch,
+  useMatches,
+  useNavigate,
+  useParams,
+  useRouteContext,
+  useRouter,
+  useSearch,
 } from "./mocks/start-stubs.js";
