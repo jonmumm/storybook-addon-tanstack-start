@@ -15,6 +15,8 @@ const INTERCEPTED_PATTERNS = ["virtual:cloudflare", "server-entry", "worker-entr
 
 export function tanstackStartPlugin(options: TanStackStartPluginOptions = {}): Plugin {
   const { additionalServerModules = [] } = options;
+  // Resolve stubs relative to this file. In the built package, this file is at
+  // dist/plugin.mjs and the stubs are at dist/mocks/start-stubs.mjs.
   const stubPath = path.resolve(__dirname, "mocks", "start-stubs.mjs");
 
   return {

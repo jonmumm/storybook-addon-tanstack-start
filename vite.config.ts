@@ -13,7 +13,7 @@ export default defineConfig({
     },
   },
   pack: {
-    entry: ["src/index.ts", "src/preview.ts", "src/plugin.ts"],
+    entry: ["src/index.ts", "src/preview.ts", "src/plugin.ts", "src/mocks/start-stubs.ts"],
     format: ["esm", "cjs"],
     dts: true,
     sourcemap: true,

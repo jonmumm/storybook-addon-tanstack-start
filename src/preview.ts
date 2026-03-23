@@ -1,6 +1,13 @@
-// This module is a placeholder. When storybook-addon-tanstack-router is installed
-// as a peer dependency, users should import decorators from that package's preview.
-// This file exists so the ./preview export entry point is valid.
+// Storybook preview entry point.
+//
+// Router decorators (withTanStackRouter) come from the companion package
+// storybook-addon-tanstack-router. Users should add BOTH packages' preview
+// entries to their .storybook/preview.ts, or use the router addon directly:
+//
+//   import { decorators as routerDecorators } from 'storybook-addon-tanstack-router/preview'
+//   export const decorators = [...routerDecorators]
+//
+// This addon focuses on the Vite plugin for server-side mocking — it does not
+// provide its own Storybook decorators.
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const decorators: any[] = [];
+export const decorators: unknown[] = [];
