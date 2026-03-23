@@ -40,6 +40,11 @@
       "import": "./dist/plugin.mjs",
       "require": "./dist/plugin.cjs",
       "types": "./dist/plugin.d.mts"
+    },
+    "./stubs": {
+      "import": "./dist/mocks/start-stubs.mjs",
+      "require": "./dist/mocks/start-stubs.cjs",
+      "types": "./dist/mocks/start-stubs.d.mts"
     }
   },
   "scripts": {

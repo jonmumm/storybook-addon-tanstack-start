@@ -1,14 +1,5 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema.json",
-  "entry": ["src/mocks/start-stubs.ts"],
   "project": ["src/**/*.ts"],
-  "ignoreDependencies": [
-    "@storybook/react",
-    "@tanstack/react-router",
-    "@testing-library/dom",
-    "@testing-library/react",
-    "@types/react-dom",
-    "react-dom",
-    "storybook"
-  ]
+  "ignoreDependencies": ["@tanstack/react-router", "@testing-library/dom", "@testing-library/react"]
 }
