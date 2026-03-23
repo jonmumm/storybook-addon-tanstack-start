@@ -20,3 +20,26 @@ jobs:
       - run: vp exec knip
       - run: vp test
       - run: vp pack
+
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: voidzero-dev/setup-vp@v1
+        with:
+          node-version: "22"
+          cache: true
+      - name: Build addon package
+        run: vp install && vp pack
+      - name: Install test-app dependencies
+        run: pnpm install
+        working-directory: test-app
+      - name: Build Storybook (integration test)
+        run: pnpm build-storybook
+        working-directory: test-app
