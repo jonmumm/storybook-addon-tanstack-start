@@ -1,6 +1,6 @@
 {
   "name": "storybook-addon-tanstack-start",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Storybook addon for TanStack Start — Vite plugin that stubs server-side imports (createServerFn, server entries, cookies) so stories render without a server",
   "keywords": [
     "storybook",
