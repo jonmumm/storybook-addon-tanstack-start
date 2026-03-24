@@ -2,6 +2,8 @@
 
 Storybook addon for TanStack Start. One package that gives you everything: a Vite plugin to stub server-side imports, router context decorator, and route parameter helpers. Includes [`storybook-addon-tanstack-router`](https://github.com/jonmumm/storybook-addon-tanstack-router) as a dependency — no need to install it separately.
 
+Pairs with [Storybook MCP](https://storybook.js.org/blog/storybook-mcp-for-react/) for agent-driven UI development.
+
 ## Installation
 
 ```bash
@@ -26,7 +28,9 @@ import { tanstackStartPlugin } from "storybook-addon-tanstack-start/plugin";
 import { mergeConfig } from "vite";
 
 const config = {
-  // ...
+  addons: [
+    "@storybook/addon-mcp", // Optional: enables agent-driven development
+  ],
   async viteFinal(config) {
     return mergeConfig(config, {
       plugins: [tanstackStartPlugin()],
@@ -60,6 +64,24 @@ export default {
   },
 };
 ```
+
+## Storybook MCP Integration
+
+Storybook 10.3+ includes [MCP support](https://storybook.js.org/blog/storybook-mcp-for-react/) that lets AI agents interact with your components. Our addon makes the build work — MCP then lets agents use it.
+
+```bash
+# Install the MCP addon
+npx storybook add @storybook/addon-mcp
+
+# Register the MCP server with your agent
+npx mcp-add --type http --url "http://localhost:6006/mcp" --scope project
+```
+
+What MCP adds on top:
+- **Component context** — agents get metadata about your components (APIs, stories, docs)
+- **Live story previews** — agents embed rendered stories directly in chat
+- **Self-healing tests** — agents run component + a11y tests and fix their own issues
+- **Published MCP** — share via [Chromatic](https://www.chromatic.com/blog/published-storybook-mcp-servers/) for team-wide agent access without running Storybook locally
 
 ## Plugin Options
 
