@@ -4,10 +4,9 @@ description: >
   Storybook addon for TanStack Start apps. Provides a Vite plugin that stubs
   server-side imports (createServerFn, server entries, cookies, routeTree.gen),
   strips TanStack/Nitro Vite plugins, and includes router context (params,
-  search, loader data). Pairs with Storybook MCP for agent-driven UI development.
-  Use when setting up Storybook in a TanStack Start project, when stories fail
-  because of server-side imports, or when configuring .storybook/main.ts for
-  a TanStack Start app.
+  search, loader data). Use when setting up Storybook in a TanStack Start
+  project, when stories fail because of server-side imports, or when
+  configuring .storybook/main.ts for a TanStack Start app.
 ---
 
 # storybook-addon-tanstack-start
@@ -37,9 +36,6 @@ import { tanstackStartPlugin } from 'storybook-addon-tanstack-start/plugin'
 import { mergeConfig } from 'vite'
 
 const config = {
-  addons: [
-    '@storybook/addon-mcp',  // Optional: enables agent-driven development
-  ],
   async viteFinal(config) {
     return mergeConfig(config, {
       plugins: [tanstackStartPlugin()],
@@ -70,65 +66,6 @@ export const MyStory: Story = {
       loader: { data: { user: { name: 'Alice' } } },
     }),
   },
-}
-```
-
-## Storybook MCP Integration
-
-Storybook 10.3+ ships with MCP support (`@storybook/addon-mcp`). Our addon makes
-the Storybook build work — MCP then lets agents interact with it.
-
-### What Storybook MCP adds
-
-- **Component context** — agents get metadata about your components (APIs, stories, docs)
-- **Live story previews** — agents embed rendered stories directly in chat
-- **Self-healing tests** — agents run component + a11y tests and fix their own issues
-- **Published MCP** — share your Storybook MCP via Chromatic for the whole org
-
-### Setup with MCP
-
-```bash
-# Install the addon (makes Storybook work with TanStack Start)
-pnpm add -D storybook-addon-tanstack-start
-
-# Install Storybook MCP addon
-npx storybook add @storybook/addon-mcp
-
-# Register the MCP server with your agent
-npx mcp-add --type http --url "http://localhost:6006/mcp" --scope project
-```
-
-Add to `.storybook/main.ts`:
-
-```typescript
-import { tanstackStartPlugin } from 'storybook-addon-tanstack-start/plugin'
-import { mergeConfig } from 'vite'
-
-const config = {
-  addons: [
-    '@storybook/addon-mcp',
-  ],
-  async viteFinal(config) {
-    return mergeConfig(config, {
-      plugins: [tanstackStartPlugin()],
-    })
-  },
-}
-```
-
-### Publishing MCP via Chromatic
-
-For team-wide access without running Storybook locally:
-
-```json
-// .mcp.json
-{
-  "mcpServers": {
-    "storybook-mcp": {
-      "type": "http",
-      "url": "https://main--<appid>.chromatic.com"
-    }
-  }
 }
 ```
 
